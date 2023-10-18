@@ -1,0 +1,15 @@
+on: [push]
+# on: [workflow_dispatch]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say great someone
+    steps:
+      - uses: actions/checkout@v4
+      - id: foo
+        uses: muath-ye/composite-action@v1
+        with:
+          who-to-greet: 'Muath'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
